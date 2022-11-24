@@ -5,6 +5,7 @@ import logo from '../../../assets/logo/logo.png'
 const Navbar = () => {
     const menuItems = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
+        <li><Link to='/blog'>Blog</Link></li>
         <li><Link to='/login'>Login</Link></li>
         <li><Link to='/signUp'>Sign Up</Link></li>
     </React.Fragment>

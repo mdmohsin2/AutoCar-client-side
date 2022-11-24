@@ -17,7 +17,7 @@ const SliderItem = ({ slide }) => {
                 <p className='text-white text-xl'>Autocar is a second hand car dealer website, where used cars are sold</p>
             </div>
             <div className="absolute flex justify-start transform -translate-y-1/2 w-2/5 titles left-64 top-1/4 mt-52">
-                <button className="btn btn-outline btn-warning">About me</button>
+                <button className="btn btn-outline btn-warning">Click here</button>
             </div>
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                 <a href={`#slide${prev}`} className="btn btn-circle">❮</a>
