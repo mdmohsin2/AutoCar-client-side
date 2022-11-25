@@ -1,19 +1,59 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const { createUser, updateUser, googleSignIn } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
+    const navigate = useNavigate()
+
+
+
+    // handle google signIn
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User Create Successfully')
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error);
+                setSignUpError(error.message)
+            })
+    }
 
 
     // handle sign up
     const handleSignUp = (data) => {
         console.log(data);
         setSignUpError('')
-        toast.success('User Create Successfully')
-        reset()
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User Create Successfully')
+                reset()
+                navigate('/')
+                // handle update user 
+                const userInfo = {
+                    displayName: data.name
+                };
+                console.log(data);
+                updateUser(userInfo)
+                    .then(() => { })
+                    .then(err => console.log(err))
+
+            })
+            .catch(error => {
+                console.log(error.message)
+                setSignUpError(error.message);
+            })
+
 
     }
 
@@ -71,7 +111,7 @@ const SignUp = () => {
                     </form>
                     <p className='mt-1 text-white'>Already have a account <Link to='/login' className='text-cyan-500 ml-2'>Please Login</Link></p>
                     <div className="divider my-4 text-cyan-400">OR</div>
-                    <button className='btn btn-primary w-full'>CONTINUE WITH GOOGLE</button>
+                    <button onClick={handleGoogleSignIn} className='btn btn-primary w-full'>CONTINUE WITH GOOGLE</button>
                 </div>
             </div>
             <hr />

@@ -1,21 +1,48 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Login = () => {
-    const { register, formState: { errors }, handleSubmit,reset } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { signIn, googleSignIn } = useContext(AuthContext);
     const [loginerror, setLoginerror] = useState('')
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
 
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                reset()
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error);
+                setLoginerror(error.message);
+            })
+    }
 
-    // handle login
+
+    // handle login 
     const handleLogin = data => {
         console.log(data);
-        setLoginerror('');
-        console.log(data);
-        toast.success('Login success');
-        reset()
+        setLoginerror('')
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                reset()
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginerror(error.message);
+            })
     }
 
 
@@ -52,7 +79,7 @@ const Login = () => {
 
                 <p className='mt-1 text-white'>New to Autocar<Link to='/signup' className='text-cyan-500 ml-2'>Create New account</Link></p>
                 <div className="divider my-4 text-cyan-400">OR</div>
-                <button className='btn  btn-primary w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn  btn-primary w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
