@@ -11,10 +11,15 @@ const CategoriesItem = () => {
             return data;
         }
     });
+
+    if (isLoading) {
+        <progress className="progress progress-primary w-56"></progress>
+    }
+
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
             {
-                appointmentOption.map(option=> <CategoriesItems key={option._id}
+                appointmentOption.map(option => <CategoriesItems key={option._id}
                     option={option}
                 ></CategoriesItems>)
             }

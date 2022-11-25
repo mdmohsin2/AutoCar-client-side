@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 const CategoriesItems = ({ option }) => {
-    const { picture, name ,_id} = option
+    const { loading } = useContext(AuthContext)
+    const { picture, name, _id } = option
+
+    if (loading) {
+        <progress className="progress progress-primary w-56"></progress>
+    }
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
