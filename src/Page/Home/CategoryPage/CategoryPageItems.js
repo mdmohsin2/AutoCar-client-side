@@ -27,12 +27,13 @@ const CategoryPageItems = ({ product, setData }) => {
                     <div>SellerName : {sellerName}</div>
                     <div className='text-violet-600 my-2'>postTime : {postTime}</div>
                 </div>
-                <p>{description.length > 100 ? description.slice(0, 150) + '...' : description}</p>
+                <p>{description.length > 100 ? description.slice(0, 200) + '...' : description}</p>
                 <div className="card-actions">
                     <label
                         onClick={() => setData(product)}
                         htmlFor="booking-modal"
-                        className="btn btn-primary">Book now</label>
+                        className="btn btn-primary">Book now
+                    </label>
                 </div>
             </div>
         </div>

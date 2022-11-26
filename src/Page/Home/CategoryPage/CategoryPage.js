@@ -23,6 +23,7 @@ const CategoryPage = () => {
                 <BookingModal
                 data={data}
                 user={user}
+                setData={setData}
                 ></BookingModal>
             }
         </div>
