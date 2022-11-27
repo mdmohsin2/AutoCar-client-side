@@ -39,13 +39,16 @@ const SignUp = () => {
                 toast.success('User Create Successfully')
                 reset()
                 navigate('/')
+                
                 // handle update user 
                 const userInfo = {
                     displayName: data.name
                 };
                 console.log(data);
                 updateUser(userInfo)
-                    .then(() => { })
+                    .then(() => { 
+                        saveUser(data.name, data.email,data.option);
+                    })
                     .then(err => console.log(err))
 
             })
@@ -55,6 +58,22 @@ const SignUp = () => {
             })
 
 
+    }
+
+    // save all users
+    const saveUser = (name, email,option) => {
+        const user = { name, email,accountType:option};
+        console.log({email});
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+            })
     }
 
 
@@ -92,8 +111,7 @@ const SignUp = () => {
                                 className="select select-bordered w-full max-w-xs my-2"
                                 {...register('option', { required: "Option is required" })}
                             >
-                                <option disabled selected>Who shot first?</option>
-                                <option value="Buyer">Buyer</option>
+                                <option value="Buyer" >Buyer</option>
                                 <option value="Seller">Seller</option>
                             </select>
                             {errors.option && <span className='text-error'>{errors.option?.message}</span>}

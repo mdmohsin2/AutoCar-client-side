@@ -15,6 +15,7 @@ const BookingModal = ({ data, setData, user }) => {
 
 
         const booking = {
+            image: data.picture,
             name,
             email,
             title,
