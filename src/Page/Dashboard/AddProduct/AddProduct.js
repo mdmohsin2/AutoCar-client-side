@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { format } from 'date-fns';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext)
     const date = new Date()
     const postTime = format(date, 'PP')
-
+    const navigate  = useNavigate()
 
     const handleAddToCard = (event) => {
         event.preventDefault();
@@ -56,6 +57,7 @@ const AddProduct = () => {
                 if (data.acknowledged) {
                     toast.success('Product Add confirm')
                     form.reset();
+                    navigate('/dashboard/myProduct')
                 }
                 else {
                     toast.error(data.message)
