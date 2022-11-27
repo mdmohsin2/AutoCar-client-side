@@ -21,6 +21,7 @@ const CategoriesItem = () => {
             {
                 appointmentOption.map(option => <CategoriesItems key={option._id}
                     option={option}
+                    isLoading={isLoading}
                 ></CategoriesItems>)
             }
         </div>
