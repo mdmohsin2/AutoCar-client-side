@@ -9,6 +9,7 @@ const SignUp = () => {
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
     const navigate = useNavigate()
+    const [buyer, setBUyer] = useState('Buyer')
 
 
 
@@ -16,6 +17,7 @@ const SignUp = () => {
     const handleGoogleSignIn = () => {
         googleSignIn()
             .then(result => {
+                'Buyer'
                 const user = result.user;
                 console.log(user);
                 toast.success('User Create Successfully')

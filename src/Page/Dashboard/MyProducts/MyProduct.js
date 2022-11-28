@@ -12,14 +12,15 @@ const MyProduct = ({ product }) => {
     }
 
     const handleDelete = id => {
+
         // backend data loaded
         const url = `http://localhost:5000/products/${id}`
 
-        fetch(url,{
+        fetch(url, {
             method: 'DELETE',
         })
-        .then(res=>res.json())
-        .then(data=>console.log(data))
+            .then(res => res.json())
+            .then(data => console.log(data))
     }
     return (
         <div className="card bg-base-300 shadow-xl">

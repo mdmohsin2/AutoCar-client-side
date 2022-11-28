@@ -35,7 +35,7 @@ const BookingModal = ({ data, setData, user }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    setData(null)
+                    // setData(null)
                     toast.success('booking confirm')
                 }
                 else {
