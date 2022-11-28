@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { FaCheckCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
-const MyProduct = ({ product }) => {
+const MyProduct = ({ product,refetch }) => {
     const { _id, picture, title, location, isVerified, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
     const { loading } = useContext(AuthContext);
     if (loading) {
@@ -20,7 +20,11 @@ const MyProduct = ({ product }) => {
             method: 'DELETE',
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data);
+                refetch();
+                toast.success('Delete Confirm')
+            })
     }
     return (
         <div className="card bg-base-300 shadow-xl">
