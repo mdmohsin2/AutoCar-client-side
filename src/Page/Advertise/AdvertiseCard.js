@@ -1,15 +1,8 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../Contexts/AuthProvider';
-import { FaCheckCircle } from "react-icons/fa";
-import useSeller from '../../../hooks/useSeller';
+import React from 'react';
+import { FaCheckCircle } from 'react-icons/fa';
 
-const CategoryPageItems = ({ product, setData }) => {
-    const { picture, title, location, isVerified, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
-    const { loading, user } = useContext(AuthContext);
-    const [isSeller] = useSeller(user?.email)
-    if (loading) {
-        <progress className="progress progress-error w-56"></progress>
-    }
+const AdvertiseCard = ({ product }) => {
+    const { _id, picture, title, location, isVerified, isAdvertise, isPaid, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
     return (
         <div className="card bg-base-300 shadow-xl">
             <figure className="px-10 pt-10">
@@ -29,23 +22,16 @@ const CategoryPageItems = ({ product, setData }) => {
                     <div>SellerName : {sellerName}</div>
                     <div className='text-violet-600 my-2'>postTime : {postTime}</div>
                 </div>
-                <p>{description.length > 100 ? description.slice(0, 200) + '...' : description}</p>
                 <div className="card-actions">
-                    {
-                        isSeller ?
-                            <label
-                                onClick={() => setData(product)}
-                                htmlFor="booking-modal"
-                                className="btn btn-primary">Book now
-                            </label>
-                            :
-                           <button className='btn btn-primary' disabled>Book now</button>
-                    }
-
+                    <label
+                        // onClick={() => setData(product)}
+                        htmlFor="booking-modal"
+                        className="btn btn-primary">Book now
+                    </label>
                 </div>
             </div>
         </div>
     );
 };
 
-export default CategoryPageItems;
+export default AdvertiseCard;

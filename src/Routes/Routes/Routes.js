@@ -13,7 +13,9 @@ import Home from "../../Page/Home/Home/Home";
 import Login from "../../Page/Login/Login";
 import Error from "../../Page/Shared/Error/Error";
 import SignUp from "../../Page/SignUp/SignUp";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
     {
@@ -50,15 +52,19 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element: <MyOrder></MyOrder>
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: '/dashboard/myOrder',
+                element: <BuyerRoute><MyOrder></MyOrder></BuyerRoute>
             },
             {
                 path: '/dashboard/addProduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myProduct',
-                element: <MyProducts></MyProducts>
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/dashboard/allBuyers',

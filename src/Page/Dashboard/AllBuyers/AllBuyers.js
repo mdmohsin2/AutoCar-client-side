@@ -1,13 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
+import Loading from '../../Shared/Loading/Loading';
 
 const AllBuyers = () => {
     // backend data loaded
     const url = `http://localhost:5000/allBuyer`
-
-
-    const { data: bookings = [], refetch } = useQuery({
+    const { data: bookings = [], refetch, isLoading } = useQuery({
         queryKey: ['bookings'],
         queryFn: async () => {
             const res = await fetch(url)
@@ -30,6 +29,11 @@ const AllBuyers = () => {
                 refetch();
                 toast.success('Delete Confirm')
             })
+    }
+
+    
+    if (isLoading) {
+        <Loading></Loading>
     }
 
 

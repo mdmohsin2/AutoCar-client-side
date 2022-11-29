@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
+import { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Contexts/AuthProvider';
+import Loading from '../../Shared/Loading/Loading';
 
 const AllSellers = () => {
+    const { user } = useContext(AuthContext)
     // backend data loaded
     const url = `http://localhost:5000/allSellers`
 
-
-    const { data: bookings = [], refetch } = useQuery({
+    const { data: bookings = [], refetch, isLoading } = useQuery({
         queryKey: ['bookings'],
         queryFn: async () => {
             const res = await fetch(url)
@@ -14,6 +17,23 @@ const AllSellers = () => {
             return data;
         }
     })
+
+
+    // // // virify butoon
+    // const urls = `http://localhost:5000/users/${user.email}`
+
+    // const { data: users = [] } = useQuery({
+    //     queryKey: ['users'],
+    //     queryFn: async () => {
+    //         const res = await fetch(urls)
+    //         const data = await res.json();
+    //         return data;
+    //     }
+    // })
+
+
+
+
 
     const handleDelete = id => {
 
@@ -25,10 +45,36 @@ const AllSellers = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 refetch();
                 toast.success('Delete Confirm')
             })
+    }
+
+
+    const handleUpdate = id => {
+        const url = `http://localhost:5000/users/verify/${id}`
+        console.log(id);
+        fetch(url, {
+            method: 'PUT',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch()
+                toast.success('verify success')
+            })
+    }
+
+
+
+
+
+
+
+
+    if (isLoading) {
+        <Loading></Loading>
     }
 
     return (
@@ -43,6 +89,7 @@ const AllSellers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>accountType</th>
+                            <th>verify</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -61,6 +108,16 @@ const AllSellers = () => {
                                 <td>{booking.name}</td>
                                 <td>{booking.email}</td>
                                 <td>{booking.accountType}</td>
+                                <td onClick={() => handleUpdate(booking._id)}>
+
+                                    {
+                                        booking?.isVerified ?
+                                            <p className='text-orange-500 font-bold'>verified</p>
+                                            :
+                                            <button className='btn btn-outline btn-success'>Unverified</button>
+                                    }
+
+                                </td>
                                 <td>
                                     <button
                                         onClick={() => handleDelete(booking._id)}

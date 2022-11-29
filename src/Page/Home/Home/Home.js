@@ -1,4 +1,5 @@
 import React from 'react';
+import Advertise from '../../Advertise/Advertise';
 import CategoriesItem from '../CategoriesItem/CategoriesItem/CategoriesItem';
 import OurInfo from '../OurInfo/OurInfo';
 import Slider from '../Slider/Slider';
@@ -8,6 +9,7 @@ const Home = () => {
     return (
         <div>
            <Slider></Slider>
+           <Advertise></Advertise>
            <CategoriesItem></CategoriesItem>
            <Speciality></Speciality>
            <OurInfo></OurInfo>

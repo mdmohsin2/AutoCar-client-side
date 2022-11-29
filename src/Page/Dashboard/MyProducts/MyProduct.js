@@ -4,8 +4,8 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
-const MyProduct = ({ product,refetch }) => {
-    const { _id, picture, title, location, isVerified, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
+const MyProduct = ({ product, refetch }) => {
+    const { _id, picture, title, location, isVerified, isAdvertise,isPaid, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
     const { loading } = useContext(AuthContext);
     if (loading) {
         <Loading></Loading>
@@ -25,8 +25,20 @@ const MyProduct = ({ product,refetch }) => {
                 refetch();
                 toast.success('Delete Confirm')
             })
+    };
+
+
+    const handleAdvertise = id => {
+        fetch(`http://localhost:5000/bookings/advertise/${id}`, {
+            method: 'PUT',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                refetch()
+            })
     }
-    
+
     return (
         <div className="card bg-base-300 shadow-xl">
             <figure className="px-10 pt-10">
@@ -47,8 +59,16 @@ const MyProduct = ({ product,refetch }) => {
                     <div className='text-violet-600 my-2'>postTime : {postTime}</div>
                 </div>
                 <p>{description.length > 100 ? description.slice(0, 200) + '...' : description}</p>
-                <div className="card-actions">
-                    <button className='btn w-60 font-bold mt-3' onClick={() => handleDelete(_id)}>Delete</button>
+                <div className="card-actions flex items-center justify-between">
+                    <button className='btn btn-primary btn-outline  font-bold mt-3' onClick={() => handleDelete(_id)}>Delete</button>
+
+                    {
+                        isAdvertise ?
+                         <button className='btn btn-secondary btn-outline font-bold mt-3'>{isPaid? 'Paid' : 'Advertised'}</button>
+                        :
+                        <button className='btn btn-error btn-outline  font-bold mt-3' onClick={() => handleAdvertise(_id)}>Advertise</button>
+                    }
+                    
                 </div>
             </div>
         </div>

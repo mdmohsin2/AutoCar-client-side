@@ -15,7 +15,7 @@ const CategoriesItem = () => {
     if (isLoading) {
         <progress className="progress progress-primary w-56"></progress>
     }
-
+  
     return (
         <div>
             <h2 className='text-3xl text-orange-500 font-bold mt-4'>product categories</h2>
