@@ -19,7 +19,7 @@ const MyOrder = () => {
     })
     return (
         <div>
-            <h2 className='text-4xl text-orange-400 text-center'>My Orders</h2>
+            <h2 className='text-4xl text-orange-400 text-center my-4'>My Orders</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full text-white" data-theme="dark">
                     <thead>

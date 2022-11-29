@@ -38,6 +38,7 @@ const Advertise = () => {
             {
                 data &&
                 <BookingModal
+                    refetch={refetch}
                     data={data}
                     user={user}
                     setData={setData}

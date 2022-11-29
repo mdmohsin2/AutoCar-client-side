@@ -62,7 +62,7 @@ const AllSellers = () => {
             .then(data => {
                 console.log(data);
                 refetch()
-                toast.success('verify success')
+                toast.success('verify success ')
             })
     }
 

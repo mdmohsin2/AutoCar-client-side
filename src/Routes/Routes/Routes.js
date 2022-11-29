@@ -13,6 +13,7 @@ import Home from "../../Page/Home/Home/Home";
 import Login from "../../Page/Login/Login";
 import Error from "../../Page/Shared/Error/Error";
 import SignUp from "../../Page/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
@@ -68,11 +69,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allBuyers',
-                element: <AllBuyers></AllBuyers>
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashboard/allSellers',
-                element: <AllSellers></AllSellers>
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
         ]
     },
