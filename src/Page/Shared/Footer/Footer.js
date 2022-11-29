@@ -6,9 +6,9 @@ const Footer = () => {
             <footer className="footer text-center mx-auto p-10 bg-neutral text-neutral-content">
                 <div>
                     <span className="footer-title">Services</span>
-                    <a href='/ ' className="link link-hover"> Sweeper worker</a>
-                    <a href='/ ' className="link link-hover">Beautiful couple</a>
-                    <a href='/ ' className="link link-hover">Old Grandmother</a>
+                    <a href='/ ' className="link link-hover">Toyota Car</a>
+                    <a href='/ ' className="link link-hover">Audi Car</a>
+                    <a href='/ ' className="link link-hover">Bmw Car</a>
                 </div>
                 <div>
                     <span className="footer-title">Contact me</span>

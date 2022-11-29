@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const AllSellers = () => {
     // backend data loaded
     const url = `http://localhost:5000/allSellers`
 
 
-    const { data: bookings = [] } = useQuery({
+    const { data: bookings = [], refetch } = useQuery({
         queryKey: ['bookings'],
         queryFn: async () => {
             const res = await fetch(url)
@@ -13,9 +14,26 @@ const AllSellers = () => {
             return data;
         }
     })
+
+    const handleDelete = id => {
+
+        // backend data loaded
+        const url = `http://localhost:5000/users/Seller/${id}`
+
+        fetch(url, {
+            method: 'DELETE',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch();
+                toast.success('Delete Confirm')
+            })
+    }
+
     return (
         <div>
-            <h2 className='text-4xl text-orange-400 text-center'>All Sellers</h2>
+            <h2 className='text-4xl text-orange-400 text-center my-2'>All Sellers</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full text-white" data-theme="dark">
                     <thead>
@@ -24,6 +42,7 @@ const AllSellers = () => {
                             {/* <th>Image</th> */}
                             <th>Name</th>
                             <th>Email</th>
+                            <th>accountType</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -41,7 +60,14 @@ const AllSellers = () => {
                                 </td> */}
                                 <td>{booking.name}</td>
                                 <td>{booking.email}</td>
-                                <td className='text-error'>delete</td>
+                                <td>{booking.accountType}</td>
+                                <td>
+                                    <button
+                                        onClick={() => handleDelete(booking._id)}
+                                        className='btn btn-outline btn-error'>
+                                        delete
+                                    </button>
+                                </td>
                             </tr>
                             )
                         }

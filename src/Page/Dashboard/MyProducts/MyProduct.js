@@ -26,6 +26,7 @@ const MyProduct = ({ product,refetch }) => {
                 toast.success('Delete Confirm')
             })
     }
+    
     return (
         <div className="card bg-base-300 shadow-xl">
             <figure className="px-10 pt-10">

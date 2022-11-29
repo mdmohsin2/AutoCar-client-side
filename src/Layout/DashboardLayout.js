@@ -8,7 +8,7 @@ import Navbar from '../Page/Shared/Navbar/Navbar';
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
     const [isBuyer] = useBuyer(user?.email)
-    const [isSeller] = useSeller(user?.email)
+    const [isSeller] = useSeller(user?.email)                   
     return (
         <div>
             <Navbar></Navbar>
