@@ -7,7 +7,7 @@ import Loading from '../../Shared/Loading/Loading';
 const AllSellers = () => {
     const { user } = useContext(AuthContext)
     // backend data loaded
-    const url = `http://localhost:5000/allSellers`
+    const url = `https://assignment-12-server-tau.vercel.app/allSellers`
 
     const { data: bookings = [], refetch, isLoading } = useQuery({
         queryKey: ['bookings'],
@@ -20,7 +20,7 @@ const AllSellers = () => {
 
 
     // // // virify butoon
-    // const urls = `http://localhost:5000/users/${user.email}`
+    // const urls = `https://assignment-12-server-tau.vercel.app/users/${user.email}`
 
     // const { data: users = [] } = useQuery({
     //     queryKey: ['users'],
@@ -38,7 +38,7 @@ const AllSellers = () => {
     const handleDelete = id => {
 
         // backend data loaded
-        const url = `http://localhost:5000/users/Seller/${id}`
+        const url = `https://assignment-12-server-tau.vercel.app/users/Seller/${id}`
 
         fetch(url, {
             method: 'DELETE',
@@ -53,7 +53,7 @@ const AllSellers = () => {
 
 
     const handleUpdate = id => {
-        const url = `http://localhost:5000/users/verify/${id}`
+        const url = `https://assignment-12-server-tau.vercel.app/users/verify/${id}`
         console.log(id);
         fetch(url, {
             method: 'PUT',
@@ -74,7 +74,7 @@ const AllSellers = () => {
 
 
     if (isLoading) {
-      return  <Loading></Loading>
+        return <Loading></Loading>
     }
 
     return (

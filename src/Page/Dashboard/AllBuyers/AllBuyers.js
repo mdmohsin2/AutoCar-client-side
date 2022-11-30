@@ -5,7 +5,7 @@ import Loading from '../../Shared/Loading/Loading';
 
 const AllBuyers = () => {
     // backend data loaded
-    const url = `http://localhost:5000/allBuyer`
+    const url = `https://assignment-12-server-tau.vercel.app/allBuyer`
     const { data: bookings = [], refetch, isLoading } = useQuery({
         queryKey: ['bookings'],
         queryFn: async () => {
@@ -18,7 +18,7 @@ const AllBuyers = () => {
     const handleDelete = id => {
 
         // backend data loaded
-        const url = `http://localhost:5000/users/Buyer/${id}`
+        const url = `https://assignment-12-server-tau.vercel.app/users/Buyer/${id}`
 
         fetch(url, {
             method: 'DELETE',
@@ -31,9 +31,9 @@ const AllBuyers = () => {
             })
     }
 
-    
+
     if (isLoading) {
-      return  <Loading></Loading>
+        return <Loading></Loading>
     }
 
 

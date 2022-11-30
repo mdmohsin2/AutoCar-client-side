@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import Loading from '../Shared/Loading/Loading';
 
 const Report = () => {
-    const url = `http://localhost:5000/reports`
+    const url = `https://assignment-12-server-tau.vercel.app/reports`
     const { data: reports = [], refetch, isLoading } = useQuery({
         queryKey: ['reports'],
         queryFn: async () => {
@@ -17,7 +17,7 @@ const Report = () => {
     // handle delete here setup
     const handleDelete = id => {
         // backend data loaded
-        const url = `http://localhost:5000/report/${id}`
+        const url = `https://assignment-12-server-tau.vercel.app/report/${id}`
 
         fetch(url, {
             method: 'DELETE',
@@ -30,8 +30,8 @@ const Report = () => {
             })
     }
 
-    if(isLoading){
-      return  <Loading></Loading>
+    if (isLoading) {
+        return <Loading></Loading>
     }
 
     return (

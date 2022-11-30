@@ -1,4 +1,4 @@
-import  { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../Page/Blog/Blog";
@@ -44,14 +44,14 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><CategoryPage></CategoryPage></PrivateRoute>,
-                loader: ({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
-                
+                loader: ({ params }) => fetch(`https://assignment-12-server-tau.vercel.app/categories/${params.id}`)
+
             }
         ]
     },
     {
         path: '/dashboard',
-        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 path: '/dashboard',
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute><Payment></Payment></BuyerRoute>,
-                loader:({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment-12-server-tau.vercel.app/bookings/${params.id}`)
             },
         ]
     },

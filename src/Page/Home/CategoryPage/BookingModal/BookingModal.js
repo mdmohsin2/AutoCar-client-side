@@ -2,7 +2,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 
 const BookingModal = ({ data, setData, user, }) => {
-   
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -27,7 +27,7 @@ const BookingModal = ({ data, setData, user, }) => {
         }
         console.log(booking);
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://assignment-12-server-tau.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

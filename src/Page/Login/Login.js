@@ -21,7 +21,7 @@ const Login = () => {
                 console.log(user);
                 reset()
                 navigate(from, { replace: true })
-                saveUser(user.displayName, user.email,'Buyer');
+                saveUser(user.displayName, user.email, 'Buyer');
             })
             .catch(error => {
                 console.log(error);
@@ -52,7 +52,7 @@ const Login = () => {
     const saveUser = (name, email, option) => {
         const user = { name, email, accountType: option };
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://assignment-12-server-tau.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

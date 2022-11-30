@@ -9,7 +9,7 @@ const Advertise = () => {
     const [data, setData] = useState(null)
     const { user } = useContext(AuthContext);
     // advertise 
-    const url = `http://localhost:5000/advertise`
+    const url = `https://assignment-12-server-tau.vercel.app/advertise`
     const { data: advertise = [], refetch, isLoading } = useQuery({
         queryKey: ['advertise'],
         queryFn: async () => {
@@ -19,12 +19,12 @@ const Advertise = () => {
         }
     })
     if (isLoading) {
-       return <Loading></Loading>
+        return <Loading></Loading>
     }
     return (
         <div>
             {
-                 advertise.length > 0 &&
+                advertise.length > 0 &&
                 <h2 className='text-4xl text-orange-500 my-4 font-bold'>Advertise</h2>
             }
             <div className='grid gap-8 grid-cols-1 lg:grid-cols-2 my-6'>

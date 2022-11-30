@@ -9,7 +9,7 @@ const AddProduct = () => {
     const { user } = useContext(AuthContext)
     const date = new Date()
     const postTime = format(date, 'PP')
-    const navigate  = useNavigate()
+    const navigate = useNavigate()
 
     const handleAddToCard = (event) => {
         event.preventDefault();
@@ -41,10 +41,10 @@ const AddProduct = () => {
             location,
             description,
             postTime,
-            email:user.email
+            email: user.email
         }
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://assignment-12-server-tau.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

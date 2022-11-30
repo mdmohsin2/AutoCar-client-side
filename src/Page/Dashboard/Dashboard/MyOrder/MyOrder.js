@@ -7,7 +7,7 @@ const MyOrder = () => {
     const { user } = useContext(AuthContext)
 
     // backend data loaded
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
+    const url = `https://assignment-12-server-tau.vercel.app/bookings?email=${user?.email}`
 
 
     const { data: bookings = [] } = useQuery({

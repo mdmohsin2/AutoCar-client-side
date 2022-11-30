@@ -11,7 +11,7 @@ const CategoryPageItems = ({ product, refetch, setData, }) => {
 
     // handle report
     const handleReport = id => {
-        fetch(`http://localhost:5000/report/${id}`, {
+        fetch(`https://assignment-12-server-tau.vercel.app/report/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())

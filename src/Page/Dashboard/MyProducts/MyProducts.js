@@ -7,10 +7,10 @@ const MyProducts = () => {
     const { user } = useContext(AuthContext)
 
     // backend data loaded
-    const url = `http://localhost:5000/products?email=${user?.email}`
+    const url = `https://assignment-12-server-tau.vercel.app/products?email=${user?.email}`
 
 
-    const { data: products = [],refetch } = useQuery({
+    const { data: products = [], refetch } = useQuery({
         queryKey: ['products', user?.email],
         queryFn: async () => {
             const res = await fetch(url)

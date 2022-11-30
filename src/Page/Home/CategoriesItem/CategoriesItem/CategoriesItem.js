@@ -6,16 +6,16 @@ const CategoriesItem = () => {
     const { data: appointmentOption = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/categories`);
+            const res = await fetch(`https://assignment-12-server-tau.vercel.app/categories`);
             const data = await res.json();
             return data;
         }
     });
 
     if (isLoading) {
-       return <progress className="progress progress-primary w-56"></progress>
+        return <progress className="progress progress-primary w-56"></progress>
     }
-  
+
     return (
         <div>
             <h2 className='text-3xl text-orange-500 font-bold mt-16'>product categories</h2>

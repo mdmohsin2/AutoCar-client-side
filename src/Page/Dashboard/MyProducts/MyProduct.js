@@ -5,16 +5,16 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
 const MyProduct = ({ product, refetch }) => {
-    const { _id, picture, title, location, isVerified, isAdvertise,isPaid, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
+    const { _id, picture, title, location, isVerified, isAdvertise, isPaid, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
     const { loading } = useContext(AuthContext);
     if (loading) {
-       return <Loading></Loading>
+        return <Loading></Loading>
     }
 
     const handleDelete = id => {
 
         // backend data loaded
-        const url = `http://localhost:5000/products/${id}`
+        const url = `https://assignment-12-server-tau.vercel.app/products/${id}`
 
         fetch(url, {
             method: 'DELETE',
@@ -29,7 +29,7 @@ const MyProduct = ({ product, refetch }) => {
 
 
     const handleAdvertise = id => {
-        fetch(`http://localhost:5000/bookings/advertise/${id}`, {
+        fetch(`https://assignment-12-server-tau.vercel.app/bookings/advertise/${id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
@@ -64,11 +64,11 @@ const MyProduct = ({ product, refetch }) => {
 
                     {
                         isAdvertise ?
-                         <button className='btn btn-secondary btn-outline font-bold mt-3'>{isPaid? 'Paid' : 'Advertised'}</button>
-                        :
-                        <button className='btn btn-error btn-outline  font-bold mt-3' onClick={() => handleAdvertise(_id)}>Advertise</button>
+                            <button className='btn btn-secondary btn-outline font-bold mt-3'>{isPaid ? 'Paid' : 'Advertised'}</button>
+                            :
+                            <button className='btn btn-error btn-outline  font-bold mt-3' onClick={() => handleAdvertise(_id)}>Advertise</button>
                     }
-                    
+
                 </div>
             </div>
         </div>

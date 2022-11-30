@@ -63,7 +63,7 @@ const SignUp = () => {
     const saveUser = (name, email, option) => {
         const user = { name, email, accountType: option };
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://assignment-12-server-tau.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -76,7 +76,7 @@ const SignUp = () => {
                 if (data.acknowledged) {
                     toast.success('User save successfully')
                 }
-                else{
+                else {
                     toast.error(data.message)
                 }
             })

@@ -14,7 +14,7 @@ const CheckoutForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://assignment-12-server-tau.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const CheckoutForm = ({ booking }) => {
                 },
             },
         );
-        
+
 
         if (confirmError) {
             setCardError(confirmError.message);
@@ -78,7 +78,7 @@ const CheckoutForm = ({ booking }) => {
                 email,
                 bookingId: bookingId
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://assignment-12-server-tau.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -107,7 +107,7 @@ const CheckoutForm = ({ booking }) => {
                         style: {
                             base: {
                                 fontSize: '16px',
-                               
+
                                 '::placeholder': {
                                     color: '#aab7c4',
                                 },
