@@ -9,7 +9,6 @@ const SignUp = () => {
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
     const navigate = useNavigate()
-    // const [buyer, setBUyer] = useState('Buyer')
 
 
 
@@ -18,10 +17,8 @@ const SignUp = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
-                // accountType:'buyer'
-                console.log(user);
-                toast.success('User Create Successfully')
                 navigate('/')
+                saveUser(user.displayName, user.email, 'Buyer');
             })
             .catch(error => {
                 console.log(error);
@@ -41,15 +38,15 @@ const SignUp = () => {
                 toast.success('User Create Successfully')
                 reset()
                 navigate('/')
-                
+
                 // handle update user 
                 const userInfo = {
                     displayName: data.name
                 };
                 console.log(data);
                 updateUser(userInfo)
-                    .then(() => { 
-                        saveUser(data.name, data.email,data.option);
+                    .then(() => {
+                        saveUser(data.name, data.email, data.option);
                     })
                     .then(err => console.log(err))
 
@@ -63,9 +60,9 @@ const SignUp = () => {
     }
 
     // save all users
-    const saveUser = (name, email,option) => {
-        const user = { name, email,accountType:option};
-        console.log({email});
+    const saveUser = (name, email, option) => {
+        const user = { name, email, accountType: option };
+
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -75,6 +72,13 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('User save successfully')
+                }
+                else{
+                    toast.error(data.message)
+                }
             })
     }
 

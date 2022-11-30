@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
@@ -20,6 +21,7 @@ const Login = () => {
                 console.log(user);
                 reset()
                 navigate(from, { replace: true })
+                saveUser(user.displayName, user.email,'Buyer');
             })
             .catch(error => {
                 console.log(error);
@@ -45,6 +47,29 @@ const Login = () => {
             })
     }
 
+
+    // save all users
+    const saveUser = (name, email, option) => {
+        const user = { name, email, accountType: option };
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    toast.success('User save successfully')
+                }
+                else {
+                    toast.error(data.message)
+                }
+            })
+    }
 
     return (
         <div className='h-[600px] flex justify-center items-center'>

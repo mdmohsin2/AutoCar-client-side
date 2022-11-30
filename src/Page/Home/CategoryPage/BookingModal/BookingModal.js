@@ -1,8 +1,8 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 
-const BookingModal = ({ data, setData, user }) => {
-
+const BookingModal = ({ data, setData, user, }) => {
+   
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -15,6 +15,7 @@ const BookingModal = ({ data, setData, user }) => {
 
 
         const booking = {
+            bookingId: data._id,
             image: data.picture,
             name,
             email,
@@ -22,7 +23,9 @@ const BookingModal = ({ data, setData, user }) => {
             price,
             location,
             phone,
+            appointmentDate: data.postTime
         }
+        console.log(booking);
 
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
@@ -37,10 +40,9 @@ const BookingModal = ({ data, setData, user }) => {
                 if (data.acknowledged) {
                     setData(null)
                     toast.success('booking confirm')
-                    
                 }
                 else {
-                    toast.error(data.message)
+                    toast.error(data.message);
                 }
 
             })

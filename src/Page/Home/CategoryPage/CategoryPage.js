@@ -5,9 +5,10 @@ import BookingModal from './BookingModal/BookingModal';
 import CategoryPageItems from './CategoryPageItems';
 
 const CategoryPage = () => {
-    const products = useLoaderData()
+    const products = useLoaderData();
     const [data, setData] = useState(null)
     const {user} = useContext(AuthContext);
+    console.log(data);
     return (
         <div>
             <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-6'>

@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import { FaCheckCircle } from "react-icons/fa";
-import useBuyer from '../../../hooks/useBuyer';
 
-const CategoryPageItems = ({ product, setData, refetch }) => {
-    const { loading, user } = useContext(AuthContext);
-    const [isBuyer] = useBuyer(user?.email)
+const CategoryPageItems = ({ product, setData, }) => {
+    const { loading } = useContext(AuthContext);
     const { picture, title, location, isVerified, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
 
     if (loading) {
@@ -32,18 +30,11 @@ const CategoryPageItems = ({ product, setData, refetch }) => {
                 </div>
                 <p>{description.length > 100 ? description.slice(0, 200) + '...' : description}</p>
                 <div className="card-actions">
-                    {
-                       
-                        isBuyer? 
-                        <label 
-                            onClick={() => setData(product)}
-                            htmlFor="booking-modal"
-                            className="btn btn-primary">Book now
-                        </label>
-                        :
-                        <button className='btn btn-primary' disabled>Book now</button>
-                    }
-
+                    <label
+                        onClick={() => setData(product)}
+                        htmlFor="booking-modal"
+                        className="btn btn-primary">Book now
+                    </label>
                 </div>
             </div>
         </div>
