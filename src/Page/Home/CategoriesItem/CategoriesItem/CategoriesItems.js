@@ -4,7 +4,7 @@ const CategoriesItems = ({ option,isLoading }) => {
     const { picture, name, _id } = option
 
     if (isLoading) {
-        <progress className="progress progress-primary w-56"></progress>
+       return <progress className="progress progress-primary w-56"></progress>
     }
     return (
         <div className="card bg-base-100 shadow-xl">

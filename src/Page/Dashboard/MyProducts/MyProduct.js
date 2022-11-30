@@ -8,7 +8,7 @@ const MyProduct = ({ product, refetch }) => {
     const { _id, picture, title, location, isVerified, isAdvertise,isPaid, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
     const { loading } = useContext(AuthContext);
     if (loading) {
-        <Loading></Loading>
+       return <Loading></Loading>
     }
 
     const handleDelete = id => {

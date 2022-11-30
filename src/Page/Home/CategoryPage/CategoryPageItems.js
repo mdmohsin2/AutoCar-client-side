@@ -1,14 +1,38 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 import { FaCheckCircle } from "react-icons/fa";
+import toast from 'react-hot-toast';
+import useBuyer from '../../../hooks/useBuyer';
 
-const CategoryPageItems = ({ product, setData, }) => {
-    const { loading } = useContext(AuthContext);
+const CategoryPageItems = ({ product, refetch, setData, }) => {
+    const { loading, user } = useContext(AuthContext);
     const { picture, title, location, isVerified, yearOfUse, postTime, sellerName, resalePrice, originalPrice, description } = product;
+    const [isBuyer] = useBuyer(user?.email)
+
+    // handle report
+    const handleReport = id => {
+        fetch(`http://localhost:5000/report/${id}`, {
+            method: 'PUT',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount > 0) {
+                    toast.success('report successfully')
+                }
+                else {
+                    toast.error(`this product already reported`)
+                }
+            })
+
+    }
 
     if (loading) {
-        <progress className="progress progress-error w-56"></progress>
+        return <progress className="progress progress-error w-56"></progress>
     }
+
+
+
     return (
         <div className="card bg-base-300 shadow-xl">
             <figure className="px-10 pt-10">
@@ -30,11 +54,18 @@ const CategoryPageItems = ({ product, setData, }) => {
                 </div>
                 <p>{description.length > 100 ? description.slice(0, 200) + '...' : description}</p>
                 <div className="card-actions">
-                    <label
-                        onClick={() => setData(product)}
-                        htmlFor="booking-modal"
-                        className="btn btn-primary">Book now
-                    </label>
+                    <div className='flex items-center justify-between'>
+                        <label
+                            onClick={() => setData(product)}
+                            htmlFor="booking-modal"
+                            className="btn btn-primary">Book now
+                        </label>
+                        <button
+                            onClick={() => handleReport(product._id)}
+                            className='btn btn-error ml-4'>
+                            report
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

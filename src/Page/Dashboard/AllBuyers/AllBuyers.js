@@ -33,7 +33,7 @@ const AllBuyers = () => {
 
     
     if (isLoading) {
-        <Loading></Loading>
+      return  <Loading></Loading>
     }
 
 

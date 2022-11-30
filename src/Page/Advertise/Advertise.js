@@ -19,11 +19,14 @@ const Advertise = () => {
         }
     })
     if (isLoading) {
-        <Loading></Loading>
+       return <Loading></Loading>
     }
     return (
         <div>
-            <h2 className='text-4xl text-orange-500 text-center my-4 font-bold'>My Advertise</h2>
+            {
+                 advertise.length > 0 &&
+                <h2 className='text-4xl text-orange-500 my-4 font-bold'>Advertise</h2>
+            }
             <div className='grid gap-8 grid-cols-1 lg:grid-cols-2 my-6'>
 
                 {

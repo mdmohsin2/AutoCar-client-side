@@ -13,7 +13,7 @@ const CategoriesItem = () => {
     });
 
     if (isLoading) {
-        <progress className="progress progress-primary w-56"></progress>
+       return <progress className="progress progress-primary w-56"></progress>
     }
   
     return (

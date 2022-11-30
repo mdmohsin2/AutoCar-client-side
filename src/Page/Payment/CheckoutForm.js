@@ -5,7 +5,7 @@ const CheckoutForm = ({ booking }) => {
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
     const [processing, setProcessing] = useState(false);
-    const [transactionId, setTransactionId] = useState('');
+    const [transaction, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState("");
 
     const stripe = useStripe();
@@ -43,7 +43,7 @@ const CheckoutForm = ({ booking }) => {
         });
 
         if (error) {
-            console.log(error);
+            // console.log(error);
             setCardError(error.message);
         }
         else {
@@ -63,6 +63,7 @@ const CheckoutForm = ({ booking }) => {
                 },
             },
         );
+        
 
         if (confirmError) {
             setCardError(confirmError.message);
@@ -86,7 +87,7 @@ const CheckoutForm = ({ booking }) => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     if (data.insertedId) {
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
@@ -127,8 +128,8 @@ const CheckoutForm = ({ booking }) => {
             <p className="text-red-500">{cardError}</p>
             {
                 success && <div>
-                    <p className='text-green-500'>{success}</p>
-                    <p>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
+                    <p className='text-error'>{success}</p>
+                    <p className='text-error'>Your transactionId: <span className='font-bold '>{transaction}</span></p>
                 </div>
             }
         </>

@@ -74,7 +74,7 @@ const AllSellers = () => {
 
 
     if (isLoading) {
-        <Loading></Loading>
+      return  <Loading></Loading>
     }
 
     return (
